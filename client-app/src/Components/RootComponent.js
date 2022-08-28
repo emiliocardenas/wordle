@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import Line from './Line'
+import { useState } from "react";
 import Wordle from './Wordle'
 
 const API_URL = 'http://localhost:4000/jokes/random'
