@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Wordle from './Wordle'
 
 const API_URL = 'http://localhost:4000/jokes/random'
@@ -8,6 +8,8 @@ const API_URL1 = 'http://localhost:4000/spanish'
 function RootComponent(props) {
 
     const [solution, setSolution] = useState('');
+    const ref = useRef();
+    
 
 
     const englishWords = event => { 
@@ -20,6 +22,10 @@ function RootComponent(props) {
         }
         fetchEnglishWord()
         event.currentTarget.disabled =true
+        ref.current.textContent = "Playing with English words"
+        // this.setState({ message: "Updated Content!"});
+
+
         
     }
 
@@ -33,30 +39,26 @@ function RootComponent(props) {
         }
         fetchSpanishWord()
         event.currentTarget.disabled = true
+        ref.current.textContent = "Playing with Spanish Words"
+
 
     }
 
 
     return(
-        <div className="board">
-         <h1>Hello CodeSandbox</h1>
-         <h2>Look Alive!!</h2>
-         <button onClick={englishWords}>
-            English
-        </button>
-        <button onClick={spanishWords}>
-            Spanish
-        </button>
-        
-         { solution && <Wordle solution = {solution}/>}
-         {/* {
-            guesses.map(guess => {
-                return (
-                    <Line guess={guess ?? ''} />
-                )
-            })
-         }
-         {currentGuess} */}
+        <div className="page">
+            <h1>Wordle</h1>
+            <div ref={ref}></div>
+            <button onClick={englishWords}>
+                English
+            </button>
+            <button onClick={spanishWords}>
+                Spanish
+            </button>
+            <div className="game">
+                { solution && <Wordle solution = {solution}/>}
+            </div>
+
         </div>
     )
 }
