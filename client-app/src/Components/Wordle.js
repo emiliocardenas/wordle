@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import useGameLogic from '../hooks/useGameLogic'
-import Grid from './Grid'
+import Board from './Board'
 
 
 export default function Wordle({ solution }) {
@@ -26,9 +26,7 @@ export default function Wordle({ solution }) {
 
   return (
     <div>
-      <div>CURRENT GUESS: {currentGuess}</div>
-      <div>CURRENT Solution: {solution}</div>
-      <Grid currentGuess = {currentGuess} guesses={guesses} turn={turn} />
+      <Board currentGuess = {currentGuess} guesses={guesses} turn={turn} />
     </div>
   )
 }
