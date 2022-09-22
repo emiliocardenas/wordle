@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import Wordle from './Wordle'
+import { englishWordsImport } from '../wordLibrary/englishWords.js'
+import { spanishWordsImport } from "../wordLibrary/spanishWords.js";
 
-const API_URL = 'http://localhost:4000/jokes/random'
-const API_URL1 = 'http://localhost:4000/spanish'
+// const API_URL = 'http://localhost:4000/jokes/random'
+// const API_URL1 = 'http://localhost:4000/spanish'
 
 
 function RootComponent(props) {
@@ -14,27 +16,26 @@ function RootComponent(props) {
 
     const englishWords = event => { 
         const fetchEnglishWord = async () => {
-            const response = await fetch(API_URL);
-            const words = await response.json()
+            // const response = await fetch(API_URL);
+            // const words = await response.json()
             console.log("Only print once")
-            const randomWord = words[Math.floor(Math.random() * words.length)]
+            const randomWord = englishWordsImport[Math.floor(Math.random() * englishWordsImport.length)]
             setSolution(randomWord)
         }
         fetchEnglishWord()
         event.currentTarget.disabled =true
         ref.current.textContent = "Playing with English words"
         // this.setState({ message: "Updated Content!"});
-
-
-        
     }
+    // console.log(solution)
+
 
     const spanishWords = event => { 
         const fetchSpanishWord = async () => {
-            const response = await fetch(API_URL1);
-            const words = await response.json()
+            // const response = await fetch(API_URL1);
+            // const words = await response.json()
             console.log("Only print once")
-            const randomWord = words[Math.floor(Math.random() * words.length)]
+            const randomWord = spanishWordsImport[Math.floor(Math.random() * spanishWordsImport.length)]
             setSolution(randomWord)
         }
         fetchSpanishWord()
